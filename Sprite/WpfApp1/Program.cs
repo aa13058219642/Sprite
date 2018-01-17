@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows;
 using System.Windows.Forms;
+using WpfTest;
 
 namespace WpfApp1
 {
@@ -24,25 +25,24 @@ namespace WpfApp1
             // 方式2
             MainWindow win2 = new MainWindow();
             app.MainWindow = win2;
+            win2.Show();
 
             Bitmap bmp1 = new Bitmap("C:\\surface0.png");
             Bitmap bmp2 = new Bitmap("C:\\surface0000.png");
-            win2.SetBitmap(API.MixBitmap(bmp1, bmp2));
-            win2.Show();
+            win2.SetBitmap(API.mixBitmap(bmp1, bmp2));
 
 
-            //ContextMenuStrip cs = new ContextMenuStrip();
-            //ToolStripMenuItem item = new ToolStripMenuItem();
-            //item.Text = "Exit";
-            //item.Click += new EventHandler(delegate (object sender, EventArgs e) { System.Windows.Application.Current.Shutdown(); });
-            //cs.Items.Add(item);
+            ContextMenuStrip cs = new ContextMenuStrip();
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = "ExitXXXXXXXXXXXXXXX";
+            item.Click += new EventHandler(delegate (object sender, EventArgs e) { System.Windows.Application.Current.Shutdown(); });
+            cs.Items.Add(item);
 
-            //NotifyIcon notifyIcon = win2.getNotifyIcon();
-            //notifyIcon.ContextMenuStrip = cs;
+            NotifyIcon notifyIcon = win2.getNotifyIcon();
+            notifyIcon.ContextMenuStrip = cs;
 
-            var dlg = new Dialog();
-            dlg.Show();
-            dlg.SetDialogSize(1000, 200);
+
+
             app.Run();
 
             /**

@@ -11,7 +11,7 @@ namespace WpfApp1
     class API
     {
         /// <summary>
-        /// the <see cref="System.Drawing.Bitmap"/> will be convert to <see cref="System.Windows.Media.Imaging.BitmapImage"/>    
+        /// <see cref="System.Drawing.Bitmap"/> convert to <see cref="System.Windows.Media.Imaging.BitmapImage"/>    
         /// </summary>
         /// <param name="bitmap">System.Drawing.Bitmap</param>
         /// <returns></returns>
@@ -30,10 +30,8 @@ namespace WpfApp1
             return bitmapImage;
         }
 
-        /** mixBitmap old version
-         *  
         /// <summary>
-        /// mix a bitmap(no alpha channel) and its alpha channel to a new bitmap(have alpha channel)
+        /// 
         /// </summary>
         /// <param name="bmpColor"></param>
         /// <param name="bmpGray"></param>
@@ -55,7 +53,7 @@ namespace WpfApp1
                 }
             return bmpResult;
         }
-        */
+
 
         /// <summary>
         /// mix a bitmap(no alpha channel) and its alpha channel to a new bitmap(have alpha channel)
@@ -66,7 +64,7 @@ namespace WpfApp1
         /// <remarks>
         /// https://stackoverflow.com/questions/24411114/c-sharp-copy-bitmaps-pixels-in-the-alpha-channel-on-another-bitmap/24411925#24411925
         /// </remarks>
-        public static Bitmap MixBitmap(Bitmap bitmap, Bitmap alphaChannel)
+        public static Bitmap mixBitmap(Bitmap bitmap, Bitmap alphaChannel)
         {
             Size s1 = bitmap.Size;
             Size s2 = alphaChannel.Size;
@@ -134,42 +132,6 @@ namespace WpfApp1
             newBitmap.UnlockBits(bmp3Data);
             return newBitmap;
         }
-
-
-        /// <summary>
-        /// make a new bitmap(width * height) form sprite9bitmap
-        /// </summary>
-        /// <param name="scale9bitmap"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <returns></returns>
-        public static Bitmap ConvertScale9bitmap(Bitmap scale9bitmap, int width, int height)
-        {
-            if (scale9bitmap == null)
-                return null;
-
-            int w = scale9bitmap.Width / 3;
-            int h = scale9bitmap.Height / 3;
-            int cw = width - 2 * w;
-            int ch = height - 2 * h;
-
-            Bitmap bmp = new Bitmap(width, height);
-            Graphics g = Graphics.FromImage(bmp);
-            g.DrawImage(scale9bitmap, new Rectangle(new Point(w + cw, h + ch), new Size(w, h)), new Rectangle(new Point(w << 1, h << 1), new Size(w, h)), GraphicsUnit.Pixel);
-            g.DrawImage(scale9bitmap, new Rectangle(new Point(w, h + ch), new Size(cw, h)), new Rectangle(new Point(w, h << 1), new Size(w, h)), GraphicsUnit.Pixel);
-            g.DrawImage(scale9bitmap, new Rectangle(new Point(0, h + ch), new Size(w, h)), new Rectangle(new Point(0, h << 1), new Size(w, h)), GraphicsUnit.Pixel);
-            g.DrawImage(scale9bitmap, new Rectangle(new Point(w + cw, h), new Size(w, ch)), new Rectangle(new Point(w << 1, h), new Size(w, h)), GraphicsUnit.Pixel);
-            g.DrawImage(scale9bitmap, new Rectangle(new Point(w, h), new Size(cw, ch)), new Rectangle(new Point(w, h), new Size(w, h)), GraphicsUnit.Pixel);
-            g.DrawImage(scale9bitmap, new Rectangle(new Point(0, h), new Size(w, ch)), new Rectangle(new Point(0, h), new Size(w, h)), GraphicsUnit.Pixel);
-            g.DrawImage(scale9bitmap, new Rectangle(new Point(w + cw, 0), new Size(w, h)), new Rectangle(new Point(w << 1, 0), new Size(w, h)), GraphicsUnit.Pixel);
-            g.DrawImage(scale9bitmap, new Rectangle(new Point(w, 0), new Size(cw, h)), new Rectangle(new Point(w, 0), new Size(w, h)), GraphicsUnit.Pixel);
-            g.DrawImage(scale9bitmap, new Rectangle(new Point(0, 0), new Size(w, h)), new Rectangle(new Point(0, 0), new Size(w, h)), GraphicsUnit.Pixel);
-            g.Dispose();
-
-            return bmp;
-        }
-
-
 
     }
 }
