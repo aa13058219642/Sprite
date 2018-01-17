@@ -33,17 +33,38 @@ namespace WpfApp1
             scale9 = WpfApp1.Properties.Resources.defaultDialog;
             this.SetScale9Bitmap(scale9);
 
-            //label
+            /** Label example
             var lab = new System.Windows.Controls.TextBlock();
             lab.Margin = new System.Windows.Thickness(100, 100, 0, 0);
+            
             lab.Foreground = System.Windows.Media.Brushes.Red;
+            //lab.Background = System.Windows.Media.Brushes.Blue;
+            lab.TextDecorations = System.Windows.TextDecorations.Strikethrough;
             lab.Text = "666666666";
             lab.MouseEnter+= new System.Windows.Input.MouseEventHandler(
                 delegate (object sender, System.Windows.Input.MouseEventArgs e){
-
-                    lab.FontStyle=System.Windows.FontStyle.
+                    lab.TextDecorations = System.Windows.TextDecorations.Underline;
+                });
+            lab.MouseLeave+= new System.Windows.Input.MouseEventHandler(
+                delegate (object sender, System.Windows.Input.MouseEventArgs e) {
+                    lab.TextDecorations = null;
                 });
             grid1.Children.Add(lab);
+
+            System.Windows.Controls.TextBlock tb = new System.Windows.Controls.TextBlock();
+            tb.TextWrapping = System.Windows.TextWrapping.Wrap;
+            tb.Foreground = System.Windows.Media.Brushes.White;
+            tb.Margin = new System.Windows.Thickness(10);
+            tb.Inlines.Add("An example on ");
+            tb.Inlines.Add(new System.Windows.Documents.Run("the TextBlock control ") { FontWeight = System.Windows.FontWeights.Bold });
+            tb.Inlines.Add("using ");
+            tb.Inlines.Add(new System.Windows.Documents.Run("inline ") { FontStyle = System.Windows.FontStyles.Italic });
+            tb.Inlines.Add(new System.Windows.Documents.Run("text formatting ") { Foreground = System.Windows.Media.Brushes.Blue });
+            tb.Inlines.Add("from ");
+            tb.Inlines.Add(new System.Windows.Documents.Run("Code-Behind") { TextDecorations = new System.Windows.TextDecorationCollection{ System.Windows.TextDecorations.Underline, System.Windows.TextDecorations.Strikethrough } });
+            tb.Inlines.Add(".");
+            grid1.Children.Add( tb);
+            */
         }
 
         /// <summary>
