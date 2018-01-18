@@ -91,9 +91,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\defaultDialog.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\defaultShell.png" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\d3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\defaultDialog.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

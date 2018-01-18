@@ -12,6 +12,7 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         private Bitmap srcBitmap = null;
+        private Bitmap dragBitmap = null;
         private System.Windows.Controls.Image img = null;
         private NotifyIcon notifyIcon = null;
 
@@ -23,6 +24,16 @@ namespace WpfApp1
             this.WindowStyle = WindowStyle.None;
             this.ShowInTaskbar = false;
             this.Background = System.Windows.Media.Brushes.Transparent;
+            this.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(
+                delegate (object sender, System.Windows.Input.MouseButtonEventArgs e) {
+                    setBackgound(dragBitmap);
+                    this.DragMove();
+                });
+            this.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(
+                delegate (object sender, System.Windows.Input.MouseButtonEventArgs e) {
+                    repairLocation();
+                    setBackgound(srcBitmap);
+                });
 
             //init image
             srcBitmap = WpfApp1.Properties.Resources.defaultShell;
@@ -56,10 +67,8 @@ namespace WpfApp1
                 return;
 
             srcBitmap = bitmap;
-            BitmapImage bmp = API.BitmapToBitmapImage(bitmap);
-            this.img.Source = bmp;
-            this.Width = img.Width = bmp.PixelWidth;
-            this.Height = img.Height = bmp.Height;
+            dragBitmap = API.SetBitmapOpacity(bitmap, 0.7);
+            setBackgound(bitmap);
         }
 
         /// <summary>
@@ -88,6 +97,25 @@ namespace WpfApp1
         public NotifyIcon getNotifyIcon()
         {
             return this.notifyIcon;
+        }
+
+        private void setBackgound(Bitmap bitmap)
+        {
+            BitmapImage bmp = API.BitmapToBitmapImage(bitmap);
+            this.img.Source = bmp;
+            this.Width = img.Width = bmp.PixelWidth;
+            this.Height = img.Height = bmp.Height;
+        }
+
+        private void repairLocation()
+        {
+            double wx = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
+            double wy = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
+            double sx = SystemParameters.PrimaryScreenWidth;//得到屏幕整体宽度
+            double sy = SystemParameters.PrimaryScreenHeight;//得到屏幕整体高度
+
+            this.Left = API.Clamp(this.Left, 0,sx - this.Width);
+            this.Top = API.Clamp(this.Top, 0,sy-this.Height);
         }
 
 

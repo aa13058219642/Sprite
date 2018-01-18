@@ -41,8 +41,12 @@ namespace WpfApp1
             //notifyIcon.ContextMenuStrip = cs;
 
             var dlg = new Dialog();
+            Bitmap dlgimg = new Bitmap("C:\\defaultDialog.png");
+            dlg.SetScale9Bitmap(dlgimg);
+            dlg.SetDialogSize(400, 300);
+            dlg.SetLocaltion(0, 0);
+            dlg.GetMainPanel().Children.Add(dlg.GetSampleLabel("Silple Text",10,10));
             dlg.Show();
-            dlg.SetDialogSize(1000, 200);
             app.Run();
 
             /**

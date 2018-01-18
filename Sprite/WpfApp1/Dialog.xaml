@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" 
         mc:Ignorable="d"
-        Height="350" Width="525" SizeChanged="Window_SizeChanged">
-    <Canvas x:Name="grid1"/>
+        Height="350" Width="525" SizeChanged="Window_SizeChanged" DragEnter="Window_DragEnter">
+    <Canvas x:Name="root"/>
 </Window>

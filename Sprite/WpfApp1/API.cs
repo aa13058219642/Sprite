@@ -11,6 +11,22 @@ namespace WpfApp1
     class API
     {
         /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="val"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
+        public static T Clamp<T>(T val, T min, T max) where T : IComparable<T>
+        {
+            if (val.CompareTo(min) < 0) return min;
+            else if (val.CompareTo(max) > 0) return max;
+            else return val;
+        }
+
+
+        /// <summary>
         /// the <see cref="System.Drawing.Bitmap"/> will be convert to <see cref="System.Windows.Media.Imaging.BitmapImage"/>    
         /// </summary>
         /// <param name="bitmap">System.Drawing.Bitmap</param>
@@ -29,6 +45,25 @@ namespace WpfApp1
             }
             return bitmapImage;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <param name="opacity">[0,1]</param>
+        /// <returns></returns>
+        public static Bitmap SetBitmapOpacity(Bitmap bitmap, double opacity)
+        {
+            Bitmap bmp = new Bitmap(bitmap.Width, bitmap.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            for (int h = 0; h < bitmap.Height; h++)
+                for (int w = 0; w < bitmap.Width; w++)
+                {
+                    Color c = bitmap.GetPixel(w, h);
+                    bmp.SetPixel(w, h, Color.FromArgb((int)(opacity*c.A), c.R, c.G, c.B));//色彩度最大为255，最小为0
+                }
+            return bmp;
+        }
+
 
         /** mixBitmap old version
          *  
@@ -168,8 +203,5 @@ namespace WpfApp1
 
             return bmp;
         }
-
-
-
     }
 }
