@@ -29,7 +29,8 @@ namespace WpfApp1
             Bitmap bmp2 = new Bitmap("C:\\surface0000.png");
             win2.SetBitmap(API.MixBitmap(bmp1, bmp2));
             win2.Show();
-
+            win2.Hide();
+            win2.Show();
 
             //ContextMenuStrip cs = new ContextMenuStrip();
             //ToolStripMenuItem item = new ToolStripMenuItem();

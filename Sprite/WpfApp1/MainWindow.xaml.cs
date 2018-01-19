@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Windows;
-using System.Windows.Forms;
-using System.Windows.Media.Imaging;
+using Controls = System.Windows.Controls;
+using Forms = System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace WpfApp1
 {
@@ -13,8 +15,10 @@ namespace WpfApp1
     {
         private Bitmap srcBitmap = null;
         private Bitmap dragBitmap = null;
-        private System.Windows.Controls.Image img = null;
-        private NotifyIcon notifyIcon = null;
+        private Controls.Image img = null;
+        private Forms.NotifyIcon notifyIcon = null;
+        
+        private bool FixedInScreen = false;
 
 
         public MainWindow()
@@ -24,37 +28,62 @@ namespace WpfApp1
             this.WindowStyle = WindowStyle.None;
             this.ShowInTaskbar = false;
             this.Background = System.Windows.Media.Brushes.Transparent;
-            this.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(
-                delegate (object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            this.Topmost = true;
+            
+            this.MouseLeftButtonDown += new MouseButtonEventHandler(
+                delegate (object sender, MouseButtonEventArgs e) 
+                {
                     setBackgound(dragBitmap);
                     this.DragMove();
                 });
-            this.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(
-                delegate (object sender, System.Windows.Input.MouseButtonEventArgs e) {
-                    repairLocation();
+            this.MouseLeftButtonUp += new MouseButtonEventHandler(
+                delegate (object sender, MouseButtonEventArgs e) 
+                {
+                    if(FixedInScreen)
+                        repairLocation();
                     setBackgound(srcBitmap);
                 });
 
             //init image
             srcBitmap = WpfApp1.Properties.Resources.defaultShell;
-            img = new System.Windows.Controls.Image();
+            img = new Controls.Image();
             img.Margin = new Thickness(0, 0, 0, 0);
-            img.VerticalAlignment = System.Windows.VerticalAlignment.Top;
-            img.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            img.VerticalAlignment = VerticalAlignment.Top;
+            img.HorizontalAlignment = HorizontalAlignment.Left;
             this.SetBitmap(srcBitmap);
             grid1.Children.Add(img);
 
             //init NotifyIcon
-            notifyIcon = new NotifyIcon();
+            notifyIcon = new Forms.NotifyIcon();
             notifyIcon.Icon = WpfApp1.Properties.Resources.ico;
-            ContextMenuStrip cs = new ContextMenuStrip();
-            ToolStripMenuItem item = new ToolStripMenuItem();
+            Forms.ContextMenuStrip cs = new Forms.ContextMenuStrip();
+            Forms.ToolStripMenuItem item = new Forms.ToolStripMenuItem();
             item.Text = "Exit";
-            item.Click += new EventHandler(delegate (object sender, EventArgs e) { System.Windows.Application.Current.Shutdown(); });
+            item.MouseUp += new Forms.MouseEventHandler(
+                delegate (object sender, Forms.MouseEventArgs e) 
+                { 
+                    if (e.Button == Forms.MouseButtons.Left)
+                    {
+                        Application.Current.Shutdown();
+                    }
+                });
             cs.Items.Add(item);
             notifyIcon.ContextMenuStrip = cs;
             notifyIcon.Visible = true;
 
+
+            //init ContextMenu
+            Controls.ContextMenu menu = new Controls.ContextMenu();
+            Controls.MenuItem exit = new Controls.MenuItem();
+            exit.Header = "Exit";
+            exit.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(
+                delegate (object sender, MouseButtonEventArgs e) 
+                {
+                    Application.Current.Shutdown();
+                    e.Handled = true;
+                });
+            menu.Items.Add(exit);
+            this.SetContextMenu(menu);
         }
 
         /// <summary>
@@ -83,8 +112,8 @@ namespace WpfApp1
         /// <summary>
         /// Set notify menu
         /// </summary>
-        /// <param name="menu">System.Windows.Forms.ContextMenuStrip</param>
-        public void setNotifyMenu(ContextMenuStrip menu)
+        /// <param name="menu">Forms.ContextMenuStrip</param>
+        public void setNotifyMenu(Forms.ContextMenuStrip menu)
         {
             notifyIcon.ContextMenuStrip = menu;
         }
@@ -94,10 +123,28 @@ namespace WpfApp1
         /// <para>if you want add event(like DoubleClick event) to the NotifyIcon</para>
         /// </summary>
         /// <returns></returns>
-        public NotifyIcon getNotifyIcon()
+        public Forms.NotifyIcon getNotifyIcon()
         {
             return this.notifyIcon;
         }
+
+        /// <summary>
+        /// this window can't be drag out of the screen when set is true
+        /// </summary>
+        /// <param name="boolean"></param>
+        public void IsFixedInScreen(bool boolean)
+        {
+            this.FixedInScreen = boolean;
+        }
+
+
+        public void SetContextMenu(Controls.ContextMenu menu)
+        {
+            this.ContextMenu = menu;
+        }
+
+
+        //##############################################################################
 
         private void setBackgound(Bitmap bitmap)
         {
@@ -106,6 +153,7 @@ namespace WpfApp1
             this.Width = img.Width = bmp.PixelWidth;
             this.Height = img.Height = bmp.Height;
         }
+
 
         private void repairLocation()
         {
