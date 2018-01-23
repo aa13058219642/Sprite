@@ -8,6 +8,10 @@ using Forms = System.Windows.Forms;
 using System.Drawing;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
+using System.Threading;
+using Helper;
 
 namespace WpfApp1
 {
@@ -43,6 +47,11 @@ namespace WpfApp1
                         repairLocation();
                     setBackgound(srcBitmap);
                 });
+
+            ////Thread test
+            //Thread thread = new Thread(work);
+            //thread.IsBackground = true;
+            //thread.Start();
 
             //init image
             srcBitmap = WpfApp1.Properties.Resources.defaultShell;
@@ -86,6 +95,29 @@ namespace WpfApp1
             this.SetContextMenu(menu);
         }
 
+        ////thread test
+        //private void work()
+        //{
+        //    while(true)
+        //    {
+        //        if (Helpers.IsExistedFullscreen() == true)
+        //        {
+        //            this.Dispatcher.Invoke(new Action(() => {
+        //                this.Hide();
+        //            }));
+        //            //Console.WriteLine("CheckFullscreen");
+        //        }
+        //        else
+        //        {
+        //            this.Dispatcher.Invoke(new Action(() => {
+        //                this.Show();
+        //            }));
+        //        }
+        //        Thread.Sleep(1);
+        //    }
+        //}
+
+
         /// <summary>
         /// set image
         /// </summary>
@@ -96,7 +128,7 @@ namespace WpfApp1
                 return;
 
             srcBitmap = bitmap;
-            dragBitmap = API.SetBitmapOpacity(bitmap, 0.7);
+            dragBitmap = BitmapHelper.SetBitmapOpacity(bitmap, 0.7);
             setBackgound(bitmap);
         }
 
@@ -148,7 +180,7 @@ namespace WpfApp1
 
         private void setBackgound(Bitmap bitmap)
         {
-            BitmapImage bmp = API.BitmapToBitmapImage(bitmap);
+            BitmapImage bmp = BitmapHelper.BitmapToBitmapImage(bitmap);
             this.img.Source = bmp;
             this.Width = img.Width = bmp.PixelWidth;
             this.Height = img.Height = bmp.Height;
@@ -162,8 +194,8 @@ namespace WpfApp1
             double sx = SystemParameters.PrimaryScreenWidth;//得到屏幕整体宽度
             double sy = SystemParameters.PrimaryScreenHeight;//得到屏幕整体高度
 
-            this.Left = API.Clamp(this.Left, 0,sx - this.Width);
-            this.Top = API.Clamp(this.Top, 0,sy-this.Height);
+            this.Left = Helpers.Clamp(this.Left, 0,sx - this.Width);
+            this.Top = Helpers.Clamp(this.Top, 0,sy-this.Height);
         }
 
 
@@ -171,5 +203,9 @@ namespace WpfApp1
         {
             notifyIcon.Dispose();
         }
+
+
+
+
     }
 }

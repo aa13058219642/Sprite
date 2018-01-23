@@ -1,30 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Text;
 using System.Windows.Media.Imaging;
 
-namespace WpfApp1
-{
-    class API
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="val"></param>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
-        /// <returns></returns>
-        public static T Clamp<T>(T val, T min, T max) where T : IComparable<T>
-        {
-            if (val.CompareTo(min) < 0) return min;
-            else if (val.CompareTo(max) > 0) return max;
-            else return val;
-        }
 
+
+namespace Helper
+{
+    class BitmapHelper
+    {
 
         /// <summary>
         /// the <see cref="System.Drawing.Bitmap"/> will be convert to <see cref="System.Windows.Media.Imaging.BitmapImage"/>    
@@ -59,7 +43,7 @@ namespace WpfApp1
                 for (int w = 0; w < bitmap.Width; w++)
                 {
                     Color c = bitmap.GetPixel(w, h);
-                    bmp.SetPixel(w, h, Color.FromArgb((int)(opacity*c.A), c.R, c.G, c.B));//色彩度最大为255，最小为0
+                    bmp.SetPixel(w, h, Color.FromArgb((int)(opacity * c.A), c.R, c.G, c.B));//色彩度最大为255，最小为0
                 }
             return bmp;
         }
@@ -203,5 +187,6 @@ namespace WpfApp1
 
             return bmp;
         }
+
     }
 }

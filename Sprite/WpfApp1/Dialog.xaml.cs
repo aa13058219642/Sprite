@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Drawing;
+using Helper;
 
 namespace WpfApp1
 {
@@ -73,7 +74,7 @@ namespace WpfApp1
         public void SetScale9Bitmap(Bitmap bitmap)
         {
             scale9 = bitmap;
-            SetBitmap(API.ConvertScale9bitmap(scale9, (int)this.Width, (int)this.Width));
+            SetBitmap(BitmapHelper.ConvertScale9bitmap(scale9, (int)this.Width, (int)this.Width));
         }
 
         /// <summary>
@@ -85,7 +86,7 @@ namespace WpfApp1
             if (bitmap == null)
                 return;
 
-            BitmapImage bmp = API.BitmapToBitmapImage(bitmap);
+            BitmapImage bmp = BitmapHelper.BitmapToBitmapImage(bitmap);
             this.backgroundImage.Source = bmp;
             this.Width = backgroundImage.Width = bmp.PixelWidth;
             this.Height = backgroundImage.Height = bmp.Height;
@@ -147,7 +148,7 @@ namespace WpfApp1
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            SetBitmap(API.ConvertScale9bitmap(scale9, (int)this.Width, (int)this.Height));
+            SetBitmap(BitmapHelper.ConvertScale9bitmap(scale9, (int)this.Width, (int)this.Height));
         }
 
 

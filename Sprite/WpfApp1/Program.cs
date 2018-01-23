@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows;
 using System.Windows.Forms;
+using Helper;
 
 namespace WpfApp1
 {
@@ -27,7 +28,7 @@ namespace WpfApp1
 
             Bitmap bmp1 = new Bitmap("C:\\surface0.png");
             Bitmap bmp2 = new Bitmap("C:\\surface0000.png");
-            win2.SetBitmap(API.MixBitmap(bmp1, bmp2));
+            win2.SetBitmap(BitmapHelper.MixBitmap(bmp1, bmp2));
             win2.Show();
             win2.Hide();
             win2.Show();
