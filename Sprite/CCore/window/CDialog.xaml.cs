@@ -8,13 +8,13 @@ using Helper;
 
 namespace CCore
 {
-    public partial class Dialog : Window
+    public partial class CDialog : Window
     {
         private Bitmap scale9 = null;
         private Controls.Image backgroundImage = null;
         private Controls.Canvas mainpanel = null;
 
-        public Dialog()
+        public CDialog()
         {
             InitializeComponent();
             this.AllowsTransparency = true;

@@ -4,14 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>73ac7b32-7da0-410c-b677-4ad001ffb80e</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Core.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>pyhtonCallNet</Name>
     <RootNamespace>pyhtonCallNet</RootNamespace>
-    <InterpreterId>Global|PythonCore|3.6</InterpreterId>
+    <InterpreterId>Global|VisualStudio|py3</InterpreterId>
     <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -23,7 +23,19 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Core.py">
+    <Compile Include="core.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="libs\dllloader.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="libs\ghost_manager.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="libs\shell.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Sprite.py">
@@ -32,7 +44,10 @@
     <Compile Include="SpriteCore.py" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|PythonCore|3.6" />
+    <InterpreterReference Include="Global|VisualStudio|py3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="E:\github\Sprite\Sprite\pyhtonCallNet\libs\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

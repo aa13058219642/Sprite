@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfTest.Properties {
+namespace CCore.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

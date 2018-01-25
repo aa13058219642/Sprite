@@ -9,7 +9,7 @@ using Helper;
 
 namespace CCore
 {
-    public partial class MainWindow : Window
+    public partial class CShell : Window
     {
         private Bitmap srcBitmap = null;
         private Bitmap dragBitmap = null;
@@ -19,7 +19,7 @@ namespace CCore
         private bool FixedInScreen = false;
 
 
-        public MainWindow()
+        public CShell()
         {
             InitializeComponent();
             this.AllowsTransparency = true;
@@ -163,7 +163,10 @@ namespace CCore
             this.FixedInScreen = boolean;
         }
 
-
+        /// <summary>
+        /// Set right click menu
+        /// </summary>
+        /// <param name="menu"></param>
         public void SetContextMenu(Controls.ContextMenu menu)
         {
             this.ContextMenu = menu;
