@@ -2,7 +2,7 @@
 
 namespace Helper
 {
-    class Helpers
+    public class CHelpers
     {
         /// <summary>
         /// A Generic Clamp Function for C#
@@ -27,12 +27,12 @@ namespace Helper
         public static bool IsExistedFullscreen()
         {
             bool bFullScreen = false;
-            IntPtr hWnd = Winapi.GetForegroundWindow();
-            Winapi.RECT rcApp, rcDesk;
-            Winapi.GetWindowRect(Winapi.GetDesktopWindow(), out rcDesk);
-            if (hWnd != Winapi.GetDesktopWindow() && hWnd != Winapi.GetShellWindow())
+            IntPtr hWnd = CWinapi.GetForegroundWindow();
+            CWinapi.RECT rcApp, rcDesk;
+            CWinapi.GetWindowRect(CWinapi.GetDesktopWindow(), out rcDesk);
+            if (hWnd != CWinapi.GetDesktopWindow() && hWnd != CWinapi.GetShellWindow())
             {
-                Winapi.GetWindowRect(hWnd, out rcApp);
+                CWinapi.GetWindowRect(hWnd, out rcApp);
                 if (rcApp.left <= rcDesk.left
                     && rcApp.top <= rcDesk.top
                     && rcApp.right >= rcDesk.right

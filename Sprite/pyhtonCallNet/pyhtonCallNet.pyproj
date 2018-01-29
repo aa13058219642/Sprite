@@ -29,9 +29,10 @@
     <Compile Include="libs\dllloader.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="libs\ghost_manager.py">
+    <Compile Include="libs\ghost.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="libs\___init__.py" />
     <Compile Include="main.py">
       <SubType>Code</SubType>
     </Compile>
@@ -48,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="E:\github\Sprite\Sprite\pyhtonCallNet\libs\" />
+    <Folder Include="libs\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

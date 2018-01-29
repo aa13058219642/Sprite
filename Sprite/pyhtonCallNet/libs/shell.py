@@ -1,7 +1,7 @@
 from core import *
 
-
-
+#Load C# Class
+from System.Drawing import Bitmap
 
 
 class Shell:
@@ -21,4 +21,5 @@ class Shell:
     def show(self):
         self.cshell.Show()
 
-
+    def hide(self):
+        self.cshell.Hide()

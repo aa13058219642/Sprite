@@ -51,9 +51,9 @@
     <Compile Include="window\CDialog.xaml.cs">
       <DependentUpon>CDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helper\BitmapHelper.cs" />
-    <Compile Include="Helper\Helpers.cs" />
-    <Compile Include="Helper\WINAPI.cs" />
+    <Compile Include="Helper\CBitmapHelper.cs" />
+    <Compile Include="Helper\CHelpers.cs" />
+    <Compile Include="Helper\CWinapi.cs" />
     <Compile Include="window\CShell.xaml.cs">
       <DependentUpon>CShell.xaml</DependentUpon>
     </Compile>

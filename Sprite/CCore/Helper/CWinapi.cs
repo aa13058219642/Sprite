@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace Helper
 {
-    class Winapi
+    public class CWinapi
     {
 
         [DllImport("SHELL32", CallingConvention = CallingConvention.StdCall)]
