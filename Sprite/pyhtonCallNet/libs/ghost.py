@@ -6,7 +6,6 @@ def get_instance():
 
 class GhostMgr:
     _instance = None
-    _isfullscreen = False
 
     def __init__(self):
         raise SyntaxError('can not instance, please use get_instance')
@@ -21,6 +20,10 @@ class GhostMgr:
     def hide(self):
         for g in self.ghosts:
             g.hide()
+
+    def show(self):
+        for g in self.ghosts:
+            g.show()
 
     def get_instance():
         if GhostMgr._instance is None:

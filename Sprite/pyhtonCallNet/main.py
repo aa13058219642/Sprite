@@ -1,14 +1,18 @@
 from core import *
+from sprite import *
 import threading
-import time
 
 def AppStartUp(sender, e):  
     '''
     C# main function
     '''
+    Core.get_instance().start()
+    # get the dispatcher for the current thread
+    dispatcher = Dispatcher.CurrentDispatcher
+    Sprite.get_instance().setDispatcher(dispatcher)
 
-    g = GhostMgr.get_instance().getGhost(0)
-    g.show()
+
+
 
 def STAMain():  
     '''
@@ -18,20 +22,17 @@ def STAMain():
     app.Startup += AppStartUp  
     app.Run()  
 
-
 def work():
     '''
     Thread of work
     '''
-    while(True):
-        if CHelpers.IsExistedFullscreen()==True:
-            print("Fullscreen!!")
-        pass
-        
-        time.sleep(0.01)
-    pass
+    time.sleep(3)
+    Sprite.get_instance().run()
+
   
 def main(): 
+
+
     #python thread
     t1 = threading.Thread(target = work)
     t1.setDaemon(True)

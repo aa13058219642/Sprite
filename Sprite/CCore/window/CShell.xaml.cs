@@ -18,9 +18,17 @@ namespace CCore
         
         private bool FixedInScreen = false;
 
+        public void a(int a)
+        {
+
+        }
 
         public CShell()
         {
+            System.Action<int> action = new System.Action<int>(a);
+            action(1);
+            this.Dispatcher.Invoke(action,1);
+
             InitializeComponent();
             this.AllowsTransparency = true;
             this.WindowStyle = WindowStyle.None;
@@ -122,7 +130,7 @@ namespace CCore
                 return;
 
             srcBitmap = bitmap;
-            dragBitmap = CBitmapHelper.SetBitmapOpacity(bitmap, 0.7);
+            dragBitmap = BitmapHelper.SetBitmapOpacity(bitmap, 0.7);
             setBackgound(bitmap);
         }
 
@@ -177,7 +185,7 @@ namespace CCore
 
         private void setBackgound(Bitmap bitmap)
         {
-            BitmapImage bmp = CBitmapHelper.BitmapToBitmapImage(bitmap);
+            BitmapImage bmp = BitmapHelper.BitmapToBitmapImage(bitmap);
             this.img.Source = bmp;
             this.Width = img.Width = bmp.PixelWidth;
             this.Height = img.Height = bmp.Height;
@@ -191,8 +199,8 @@ namespace CCore
             double sx = SystemParameters.PrimaryScreenWidth;//得到屏幕整体宽度
             double sy = SystemParameters.PrimaryScreenHeight;//得到屏幕整体高度
 
-            this.Left = CHelpers.Clamp(this.Left, 0,sx - this.Width);
-            this.Top = CHelpers.Clamp(this.Top, 0,sy-this.Height);
+            this.Left = Helpers.Clamp(this.Left, 0,sx - this.Width);
+            this.Top = Helpers.Clamp(this.Top, 0,sy-this.Height);
         }
 
 

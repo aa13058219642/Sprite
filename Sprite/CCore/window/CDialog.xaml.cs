@@ -69,7 +69,7 @@ namespace CCore
         public void SetScale9Bitmap(Bitmap bitmap)
         {
             scale9 = bitmap;
-            SetBitmap(CBitmapHelper.ConvertScale9bitmap(scale9, (int)this.Width, (int)this.Width));
+            SetBitmap(BitmapHelper.ConvertScale9bitmap(scale9, (int)this.Width, (int)this.Width));
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace CCore
             if (bitmap == null)
                 return;
 
-            BitmapImage bmp = CBitmapHelper.BitmapToBitmapImage(bitmap);
+            BitmapImage bmp = BitmapHelper.BitmapToBitmapImage(bitmap);
             this.backgroundImage.Source = bmp;
             this.Width = backgroundImage.Width = bmp.PixelWidth;
             this.Height = backgroundImage.Height = bmp.Height;
@@ -143,7 +143,7 @@ namespace CCore
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            SetBitmap(CBitmapHelper.ConvertScale9bitmap(scale9, (int)this.Width, (int)this.Height));
+            SetBitmap(BitmapHelper.ConvertScale9bitmap(scale9, (int)this.Width, (int)this.Height));
         }
 
 

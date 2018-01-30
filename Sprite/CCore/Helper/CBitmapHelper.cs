@@ -7,7 +7,7 @@ using System.Windows.Media.Imaging;
 
 namespace Helper
 {
-    public class CBitmapHelper
+    public class BitmapHelper
     {
 
         /// <summary>

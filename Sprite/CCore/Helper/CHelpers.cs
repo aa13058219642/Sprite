@@ -2,7 +2,7 @@
 
 namespace Helper
 {
-    public class CHelpers
+    public class Helpers
     {
         /// <summary>
         /// A Generic Clamp Function for C#
