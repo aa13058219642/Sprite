@@ -1,6 +1,9 @@
 from core import *
 from libs.shell import *
 
+import os
+import logging
+
 def get_instance():
     return GhostMgr.get_instance()
 
@@ -12,7 +15,23 @@ class GhostMgr:
 
     def init(self):
         self.ghosts = []
-        self.ghosts.append(Ghost())
+        self.scan_ghosts()
+        #self.ghosts.append(Ghost())
+
+    def scan_ghosts(self):
+        ghosts_path = os.getcwd()+"\\Ghosts\\"
+        if(False == os.path.exists(ghosts_path)):
+            logging.error("directory [%s] NOT found!", ghosts_path)
+            raise SyntaxError('directory NOT found!')
+        
+        for ghost_name in os.listdir(ghosts_path):
+            new_ghost = Ghost(ghosts_path + ghost_name)
+            self.ghosts.append(new_ghost)
+
+        #print(os.getcwd())
+        #print(os.listdir(os.getcwd()+"\\Ghosts\\default\\shells"))
+        pass
+
 
     def getGhost(self,index):
         return self.ghosts[index]
@@ -35,10 +54,13 @@ class GhostMgr:
 
 
 class Ghost:
-    def __init__(self):
+    def __init__(self,rootpath):
         self.shells = []                
         self.dialogs = []
-        self.shells.append(Shell())
+        self.rootpath=rootpath #root path of this ghost 
+
+        self.scan_shell()
+        self.used_shell = self.shells[0] # default
         pass
 
     def show(self):
@@ -52,3 +74,38 @@ class Ghost:
             s.changeFace(0)
             s.hide()
         pass
+
+    def scan_shell(self):
+        shells_path = self.rootpath+"\\shells\\"
+        if(False == os.path.exists(shells_path)):
+            logging.error("directory [%s] NOT found!", shells_path)
+            raise SyntaxError('directory NOT found!')
+
+        for shell_path in os.listdir(shells_path):
+            shell = Shell(shell_path)
+            self.shells.append(shell)
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

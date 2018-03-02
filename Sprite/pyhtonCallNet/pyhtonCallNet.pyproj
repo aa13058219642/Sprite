@@ -32,6 +32,9 @@
     <Compile Include="libs\ghost.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="libs\fileloader.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="libs\___init__.py" />
     <Compile Include="main.py">
       <SubType>Code</SubType>
