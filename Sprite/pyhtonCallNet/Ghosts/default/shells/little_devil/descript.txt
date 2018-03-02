@@ -1,8 +1,12 @@
-craftman,8　シェル改変zutsu
-name,小悪魔
+   craftman,8　シェル改変zutsu
+name,小悪魔   
 type,shell
+
+
 sakura.balloon.alignment,none
 kero.balloon.alignment,none
+
+
 shiori.logo.x,0
 shiori.logo.y,0
 sakura.balloon.offsetx,20

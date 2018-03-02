@@ -218,7 +218,7 @@ kero.menuitem3,2
 - 本体对话框在本体Shell的左侧还是右侧（none自动调整）
 - 默认值：ghost的descript設定
 
-#####kero.balloon.alignment,,[none | left | right]
+#####kero.balloon.alignment,[none | left | right]
 - 使魔对话框在使魔Shell的左侧还是右侧（none自动调整）
 - 默认值：ghost的descript設定
 
@@ -278,15 +278,15 @@ menu.background.font.color.g
 セパレータ色青(0～255)
 menu.background.font.color.b
 
-#####menu.disable.font.color.r
+#####menu.disable.font.color.r,数値
 選択不可文字色赤(0～255)
 (background画像の0,0の色 + menu.background.font.color * 2 ) / 3
 
-#####menu.disable.font.color.g
+#####menu.disable.font.color.g,数値
 選択不可文字色緑(0～255)
 (background画像の0,0の色 + menu.background.font.color * 2 ) / 3
 
-#####menu.disable.font.color.b
+#####menu.disable.font.color.b,数値
 選択不可文字色青(0～255)
 (background画像の0,0の色 + menu.background.font.color * 2 ) / 3
 

@@ -1,8 +1,6 @@
 from core import *
 import time
-
-def ttest(isshow):
-    print("isshow="+str(isshow))
+import logging
 
 class Sprite:
     _instance = None
@@ -38,50 +36,46 @@ class Sprite:
         self.dispatcher = dispatcher
 
     def run(self):
-
-        while(True):
-            if CHelpers.IsExistedFullscreen()!=self.isfullscreen:
-                self.isfullscreen = not self.isfullscreen
-                if(self.isfullscreen):
-                    #deligate = System.Action(self.test)
-                    #self.dispatcher.Invoke(deligate)
-
-                    #The generic's name in Python.NET is Action`1 (in general: 
-                    #Action`N with N being the number of generic arguments).
-                    #We can get the wrapper object by using getattr on the module:
-                    #src:https://stackoverflow.com/questions/30659933/python3-pythonnet-generic-delegates
-                    
-                    #get class System.Action<T>
-                    Action = getattr(System, "Action`1")  
-                    
-                    #System.Action<bool>
-                    action = Action[System.Boolean](self.test)  
-
-                    #call Dispatcher module: 
-                    #  public object Invoke(Delegate method, params object[] args);
-                    self.dispatcher.Invoke(action,[False])      
-                    pass
-                else:
-                    Action = getattr(System, "Action`1")
-                    action = Action[System.Boolean](self.test)
-                    self.dispatcher.Invoke(action,[True])
-                    pass
-            pass
-        
-            time.sleep(0.01)
-
-        #this.Dispatcher.Invoke(new Action(() =>
-        #{
-        #    this.Hide();
-        #}));
-        #System.Windows.Threading.Dispatcher
-        #System.Action
-
-
-
+        logging.info("Sprite run")
+        try:
+            while(True):
+                #main loop
+                self.checkFullscreenApplication()
+                time.sleep(0.001)
+        except:
+            logging.exception("error")
+            raise RuntimeError("runtime error") 
         pass
 
 
+    def checkFullscreenApplication(self):
+        if CHelpers.IsExistedFullscreen()!=self.isfullscreen:
+            self.isfullscreen = not self.isfullscreen
+            if(self.isfullscreen):
+                #deligate = System.Action(self.test)
+                #self.dispatcher.Invoke(deligate)
+
+                #The generic's name in Python.NET is Action`1 (in general: 
+                #Action`N with N being the number of generic arguments).
+                #We can get the wrapper object by using getattr on the module:
+                #src:https://stackoverflow.com/questions/30659933/python3-pythonnet-generic-delegates
+                    
+                #get class System.Action<T>
+                Action = getattr(System, "Action`1")  
+                    
+                #System.Action<bool>
+                action = Action[System.Boolean](self.test)  
+
+                #call Dispatcher module: 
+                #  public object Invoke(Delegate method, params object[] args);
+                self.dispatcher.Invoke(action,[False])      
+                pass
+            else:
+                Action = getattr(System, "Action`1")
+                action = Action[System.Boolean](self.test)
+                self.dispatcher.Invoke(action,[True])
+                pass
+        pass
 
 
 

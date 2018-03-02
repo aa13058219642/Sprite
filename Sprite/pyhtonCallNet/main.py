@@ -2,15 +2,20 @@ from core import *
 from sprite import *
 import threading
 import logging
+import test
 
 def AppStartUp(sender, e):  
     '''
     C# main function
     '''
-    Core.get_instance().start()
-    # get the dispatcher for the current thread
-    dispatcher = Dispatcher.CurrentDispatcher
-    Sprite.get_instance().setDispatcher(dispatcher)
+    try:
+        Core.get_instance().start()
+        # get the dispatcher for the current thread
+        dispatcher = Dispatcher.CurrentDispatcher
+        Sprite.get_instance().setDispatcher(dispatcher)
+    except:
+        logging.exception("error")
+        raise RuntimeError("error")
 
 
 def STAMain():  
@@ -36,7 +41,7 @@ def init_creat_thread():
         t1.setDaemon(True)
         t1.start()  
     except:
-        logging.exception("create work thread fail")
+        logging.exception("error:create work thread fail")
 
     try:
         #this Thread() from System.Threading
@@ -44,12 +49,12 @@ def init_creat_thread():
         t2.ApartmentState = ApartmentState.STA  
         t2.Start()  
     except:
-        logging.exception("create System.Threading fail")
+        logging.exception("error:create System.Threading fail")
 
     t2.Join() 
   
 def init_logging():
-    logging.basicConfig(filename='sprite.log', level=logging.DEBUG,format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %I:%M:%S')
+    logging.basicConfig(filename='sprite.log', level=logging.DEBUG,format='%(asctime)s %(levelname)s %(message)s', datefmt='%Y-%m-%d %I:%M:%S')
     logging.info('=========================================================================')
     pass
 
@@ -65,6 +70,7 @@ def init():
 
 
 def main(): 
+    test.test()
     init()
 
 if __name__ == "__main__":  

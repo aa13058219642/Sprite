@@ -1,5 +1,15 @@
+import sys
+sys.path.append(sys.path[0]+"\\libs")
+
 import time
-from libs.dllloader import *
+import logging
+import loader
+
+#Load clr
+import clr  
+clr.AddReference("PresentationFramework.Classic, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35")  
+clr.AddReference("PresentationCore, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35")  
+from System.Reflection import Assembly
 
 #Load C# std namespace
 import System
@@ -10,13 +20,12 @@ from System.Threading import *
 #from System.Delegate  import *
 
 #Load dll namespace 
-loadDotNetDll(r'E:\\github\\Sprite\\Sprite\\CCore\\bin\\Debug\\CCore.dll')
+Assembly.LoadFile(r'E:\\github\\Sprite\\Sprite\\CCore\\bin\\Debug\\CCore.dll')
 from CCore import CShell,CDialog
 from Helper import CHelpers,CWinapi,CBitmapHelper
 
-#Load lib
-from libs.ghost import *
-from libs.shell import *
+#Load libs
+from ghost import *
 
 class Core:
     _instance = None
@@ -40,25 +49,25 @@ class Core:
         self.gm.show()
         pass
 
-    def run(self):
-        while(True):
-            if CHelpers.IsExistedFullscreen()!=self.isfullscreen:
-                self.isfullscreen = not self.isfullscreen
-                if(self.isfullscreen):
-                    print("isfullscreen1")
-                    #Threading.Dispatcher.Invoke(Action())
-                    GhostMgr.get_instance().hide()
+    #def run(self):
+    #    while(True):
+    #        if CHelpers.IsExistedFullscreen()!=self.isfullscreen:
+    #            self.isfullscreen = not self.isfullscreen
+    #            if(self.isfullscreen):
+    #                print("isfullscreen1")
+    #                #Threading.Dispatcher.Invoke(Action())
+    #                GhostMgr.get_instance().hide()
                     
-                    #Application.Current.Dispatcher.Invoke(d)
-                    print("isfullscreen2")
-                    pass
-                else:
-                    GhostMgr.get_instance().show()
-                    #AppDomain.CurrentDomain.AssemblyLoad += d
-                    pass
-            pass
+    #                #Application.Current.Dispatcher.Invoke(d)
+    #                print("isfullscreen2")
+    #                pass
+    #            else:
+    #                GhostMgr.get_instance().show()
+    #                #AppDomain.CurrentDomain.AssemblyLoad += d
+    #                pass
+    #        pass
         
-            time.sleep(0.01)
+    #        time.sleep(0.01)
 
 
 

@@ -26,13 +26,10 @@
     <Compile Include="core.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="libs\dllloader.py">
+    <Compile Include="libs\loader.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="libs\ghost.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="libs\fileloader.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="libs\___init__.py" />
@@ -45,7 +42,7 @@
     <Compile Include="sprite.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SpriteCore.py" />
+    <Compile Include="test.py" />
     <Compile Include="__init__.py">
       <SubType>Code</SubType>
     </Compile>

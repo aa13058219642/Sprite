@@ -28,8 +28,6 @@ class GhostMgr:
             new_ghost = Ghost(ghosts_path + ghost_name)
             self.ghosts.append(new_ghost)
 
-        #print(os.getcwd())
-        #print(os.listdir(os.getcwd()+"\\Ghosts\\default\\shells"))
         pass
 
 
@@ -81,8 +79,8 @@ class Ghost:
             logging.error("directory [%s] NOT found!", shells_path)
             raise SyntaxError('directory NOT found!')
 
-        for shell_path in os.listdir(shells_path):
-            shell = Shell(shell_path)
+        for dir in os.listdir(shells_path):
+            shell = Shell(shells_path + dir)
             self.shells.append(shell)
         pass
 

@@ -2,11 +2,9 @@ from core import *
 #Load C# Class
 from System.Drawing import Bitmap
 
-
 import os
 import time
-
-
+import loader
 
 class Shell:
     def __init__(self, rootpath):
@@ -17,20 +15,23 @@ class Shell:
 
     def loadShell(self):
         print("Shell.loadShell")
-        #fileloader.load_configfile(self.rootpath)
-        #self.loadShell("C:\\surface.png")
 
-        #self.bmps.append(Bitmap(path))
-        print(os.getcwd())
-        print(os.listdir(os.getcwd()+"\\Ghosts\\default\\shells"))
+        descript_path = self.rootpath +"\\descript.txt"
+        descript_config =  loader.load_configfile(descript_path)
+        #self.loadShell("C:\\surface.png")
+        print(descript_config)
+        
+        #print(os.getcwd())
+        #print(os.listdir(os.getcwd()+"\\Ghosts\\default\\shells"))
         #print(os.listdir("\\Ghosts"))
         #os.chdir('E:\\')
+        #self.bmps.append(Bitmap("C:\\surface.png"))
         time.sleep(10000)
-        pass
+        return
 
     def changeFace(self,index):
         self.cshell.SetBitmap(self.bmps[index])
-        pass
+        return
 
     def show(self):
         self.cshell.Show()
