@@ -1,8 +1,5 @@
-#Shell
-Shell 的配置文件说明
-
-
-##descript.txt
+#Shell——descript.txt
+Shell 的descript.txt配置文件说明
 原文来自[这里](http://ssp.shillest.net/ukadoc/manual/descript_shell.html)，对于意义及作用不明的字段暂不进行翻译。
 
 ####概要
@@ -410,19 +407,6 @@ autoで自動表示、hiddenで非表示。
 #####seriko.use_self_alpha,数値
 数値が1だった場合はpnaでなく画像自体（32bitPNG）のアルファチャンネルを透明度として使用する。
 なお、1の場合でもアルファチャンネルを持たない画像についてはpnaが有効。
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
