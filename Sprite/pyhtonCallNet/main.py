@@ -1,4 +1,4 @@
-from core import *
+from libs.core import *
 from sprite import *
 import threading
 import logging
@@ -70,7 +70,7 @@ def init():
 
 
 def main(): 
-    test.test()
+    #test.test()
     init()
 
 if __name__ == "__main__":  

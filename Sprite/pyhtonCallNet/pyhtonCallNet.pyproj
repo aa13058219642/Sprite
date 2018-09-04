@@ -11,8 +11,6 @@
     <OutputPath>.</OutputPath>
     <Name>pyhtonCallNet</Name>
     <RootNamespace>pyhtonCallNet</RootNamespace>
-    <InterpreterId>Global|VisualStudio|py3</InterpreterId>
-    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="core.py">
+    <Compile Include="libs\core.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="libs\loader.py">
@@ -32,14 +30,14 @@
     <Compile Include="libs\ghost.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="libs\___init__.py" />
+    <Compile Include="libs\__init__.py" />
     <Compile Include="main.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="libs\shell.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="sprite.py">
+    <Compile Include="libs\sprite.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="test.py" />
@@ -48,11 +46,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|VisualStudio|py3" />
+    <Folder Include="libs\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="E:\github\Sprite\Sprite\pyhtonCallNet\libs\" />
-    <Folder Include="libs\" />
+    <Content Include="CCore.dll" />
+    <Content Include="_openCMD.cmd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

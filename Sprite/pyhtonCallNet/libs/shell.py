@@ -1,5 +1,6 @@
-from core import *
+#from core import *
 #Load C# Class
+from CCore import CShell,CDialog
 from System.Drawing import Bitmap
 
 import os
@@ -41,8 +42,8 @@ class Shell:
         #print(os.listdir("\\Ghosts"))
         #os.chdir('E:\\')
         #self.loadShell("C:\\surface.png")
-        #self.bmps.append(Bitmap("C:\\surface.png"))
-        time.sleep(10000)
+        self.bmps.append(Bitmap("C:\\surface.png"))
+        #time.sleep(10000)
         return
 
 
@@ -137,7 +138,7 @@ class Surface:
             #li = line.split(',')
 
         print(self.animations)
-        time.sleep(10000)
+        #time.sleep(10000)
 
 
 

@@ -20,7 +20,8 @@ from System.Threading import *
 #from System.Delegate  import *
 
 #Load dll namespace 
-Assembly.LoadFile(r'E:\\github\\Sprite\\Sprite\\CCore\\bin\\Debug\\CCore.dll')
+
+Assembly.LoadFile(sys.path[0] + r'\\CCore.dll')
 from CCore import CShell,CDialog
 from Helper import CHelpers,CWinapi,CBitmapHelper
 
@@ -45,8 +46,9 @@ class Core:
         return Core._instance
 
     def start(self):
-        self.gm.getGhost(0)
-        self.gm.show()
+        g = self.gm.getGhost(0)
+        g.show()
+        #self.gm.show()
         pass
 
     #def run(self):

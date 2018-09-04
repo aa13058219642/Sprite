@@ -1,5 +1,5 @@
-from core import *
-from libs.shell import *
+#from core import *
+from shell import *
 
 import os
 import logging
